@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Currency Converter App',
-        theme: AppTheme.appTheme,
+        themeMode: ThemeMode.system,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
         home: const SplashPage(),
       ),
     );

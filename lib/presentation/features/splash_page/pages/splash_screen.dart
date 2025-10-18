@@ -1,6 +1,8 @@
 import 'package:currency_rate_calculator/core/configs/app_colors.dart';
 import 'package:currency_rate_calculator/core/services/navigation_services.dart';
 import 'package:currency_rate_calculator/presentation/features/auth/pages/auth_root.dart';
+import 'package:currency_rate_calculator/presentation/features/home/pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -31,7 +33,11 @@ class _SplashPageState extends State<SplashPage>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     _controller.forward().then((v) async {
-      NavigatorWidget.pushAndRemovePages(context: context, page: AuthRoot());
+      if (FirebaseAuth.instance.currentUser == null) {
+        NavigatorWidget.pushAndRemovePages(context: context, page: AuthRoot());
+      } else {
+        NavigatorWidget.pushAndRemovePages(context: context, page: HomePage());
+      }
     });
   }
 
