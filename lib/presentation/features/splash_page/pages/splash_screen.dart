@@ -62,7 +62,6 @@ class _SplashPageState extends State<SplashPage>
             colors: [
               AppColors.accentBlue,
               AppColors.accentBlue,
-
               Colors.white,
               Colors.white,
             ],

@@ -48,12 +48,13 @@ class _AppTextFieldState extends State<AppTextField> {
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           gapPadding: 12,
         ),
-        errorStyle: TextStyle(color: AppColors.accentBlue),
-        hintStyle: TextStyle(color: Colors.grey[800]),
+        errorStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+        hintStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
         hintText: widget.hintText,
-        prefixStyle: TextStyle(color: AppColors.accentBlue),
-        fillColor: AppColors.background,
+        prefixStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+        fillColor: Theme.of(context).colorScheme.surface,
         filled: true,
+
         contentPadding: EdgeInsets.symmetric(vertical: 20.0),
         suffixIcon: widget.isPassword
             ? isPassVisible

@@ -55,7 +55,7 @@ class SignUpPage extends StatelessWidget {
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.25,
-                        color: AppColors.accentDark,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -65,7 +65,7 @@ class SignUpPage extends StatelessWidget {
                         fontSize: 19,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.25,
-                        color: AppColors.accentDark,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -76,6 +76,7 @@ class SignUpPage extends StatelessWidget {
                       textEditingController: _emailEditingController,
                       validator: (value) =>
                           Validation.validateEmail(email: value ?? ""),
+                      context: context,
                     ),
                     SizedBox(height: height * 0.02),
                     authField(
@@ -85,6 +86,7 @@ class SignUpPage extends StatelessWidget {
                       isPassword: true,
                       validator: (value) =>
                           Validation.validatePassword(password: value ?? ""),
+                      context: context,
                     ),
                     SizedBox(height: height * 0.13),
                     BlocConsumer<UserSignUpCubit, UserSignUpState>(
@@ -178,6 +180,7 @@ class SignUpPage extends StatelessWidget {
     required TextEditingController textEditingController,
     bool? isPassword,
     String? Function(String?)? validator,
+    required BuildContext context,
   }) {
     return Column(
       spacing: 6,
@@ -189,7 +192,7 @@ class SignUpPage extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.25,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
           textAlign: TextAlign.left,
         ),

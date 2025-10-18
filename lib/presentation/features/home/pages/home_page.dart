@@ -109,147 +109,156 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Converter Card
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Converter Card
+              Center(
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    buildCurrencyCard(
-                      currencyLabel: fromCurrency,
-                      currencyCode: "\$",
-                      amount: fromAmount,
-                      onCurrencyChanged: (value) {
-                        setState(() => fromCurrency = value);
-                      },
-                    ),
-                    const SizedBox(height: 22),
-                    buildCurrencyCard(
-                      currencyLabel: toCurrency,
-                      currencyCode: "€",
-                      amount: toAmount,
-                      onCurrencyChanged: (value) {
-                        setState(() => toCurrency = value);
-                      },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: swapCurrencies,
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: colors.surface,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: colors.onSurface.withValues(alpha: 0.3),
-                                blurRadius: 6,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Icon(Icons.sync, color: colors.primary),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        buildCurrencyCard(
+                          currencyLabel: fromCurrency,
+                          currencyCode: "\$",
+                          amount: fromAmount,
+                          onCurrencyChanged: (value) {
+                            setState(() => fromCurrency = value);
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 32),
-
-            // Chart Section
-            _headTextWidget(width, text: 'Five day streak', colors: colors),
-            Card(
-              color: colors.surface,
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  height: 180,
-                  child: LineChart(
-                    LineChartData(
-                      gridData: const FlGridData(show: false),
-                      titlesData: FlTitlesData(
-                        leftTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            getTitlesWidget: (value, meta) {
-                              final labels = ['1', '2', '3', '4', '5'];
-                              if (value >= 0 && value < labels.length) {
-                                return Text(labels[value.toInt()]);
-                              } else {
-                                return const Text('');
-                              }
-                            },
-                            interval: 1,
-                          ),
-                        ),
-                        rightTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                        topTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                      ),
-                      borderData: FlBorderData(show: false),
-                      minX: 0,
-                      maxX: 4,
-                      minY: 0,
-                      maxY: 80,
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: const [
-                            FlSpot(0, 50),
-                            FlSpot(1, 60),
-                            FlSpot(2, 45),
-                            FlSpot(3, 70),
-                            FlSpot(4, 62),
-                          ],
-                          isCurved: true,
-                          color: colors.primary,
-                          dotData: const FlDotData(show: false),
-                          belowBarData: BarAreaData(show: false),
+                        const SizedBox(height: 22),
+                        buildCurrencyCard(
+                          currencyLabel: toCurrency,
+                          currencyCode: "€",
+                          amount: toAmount,
+                          onCurrencyChanged: (value) {
+                            setState(() => toCurrency = value);
+                          },
                         ),
                       ],
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: swapCurrencies,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: colors.surface,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: colors.onSurface.withValues(
+                                      alpha: 0.3,
+                                    ),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Icon(Icons.sync, color: colors.primary),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Chart Section
+              _headTextWidget(width, text: 'Five day streak', colors: colors),
+              Card(
+                color: colors.surface,
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SizedBox(
+                    height: 180,
+                    child: LineChart(
+                      LineChartData(
+                        gridData: const FlGridData(show: false),
+                        titlesData: FlTitlesData(
+                          leftTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              getTitlesWidget: (value, meta) {
+                                final labels = ['1', '2', '3', '4', '5'];
+                                if (value >= 0 && value < labels.length) {
+                                  return Text(labels[value.toInt()]);
+                                } else {
+                                  return const Text('');
+                                }
+                              },
+                              interval: 1,
+                            ),
+                          ),
+                          rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                        ),
+                        borderData: FlBorderData(show: false),
+                        minX: 0,
+                        maxX: 4,
+                        minY: 0,
+                        maxY: 80,
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: const [
+                              FlSpot(0, 50),
+                              FlSpot(1, 60),
+                              FlSpot(2, 45),
+                              FlSpot(3, 70),
+                              FlSpot(4, 62),
+                            ],
+                            isCurved: true,
+                            color: colors.primary,
+                            dotData: const FlDotData(show: false),
+                            belowBarData: BarAreaData(show: false),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            // Recent Conversions
-            _headTextWidget(width, text: 'Recent conversions', colors: colors),
+              // Recent Conversions
+              _headTextWidget(
+                width,
+                text: 'Recent conversions',
+                colors: colors,
+              ),
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: 1,
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 3,
                 itemBuilder: (context, index) => ListTile(
                   title: Text(
-                    '1, 1 USD to 87 INR',
+                    '${index + 1}, 1 USD to 87 INR',
                     style: TextStyle(color: colors.onSurface),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -273,7 +282,7 @@ class _HomePageState extends State<HomePage> {
               color: colors.onSurface,
             ),
           ),
-          Container(width: width * 0.4, height: 3, color: colors.primary),
+          Container(width: width * 0.4, height: 2, color: colors.primary),
         ],
       ),
     );
