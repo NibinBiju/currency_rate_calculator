@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "260391164251",
+    "project_id": "currency-converter-app-6abdd",
+    "storage_bucket": "currency-converter-app-6abdd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260391164251:android:144070e912c286aebfa27e",
+        "android_client_info": {
+          "package_name": "com.example.currency_rate_calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKULh-IlxxFqm3JQddoh0PS9PvM2oXEZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
