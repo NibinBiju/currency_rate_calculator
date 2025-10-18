@@ -1,4 +1,3 @@
-import 'package:currency_rate_calculator/core/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatefulWidget {

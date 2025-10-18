@@ -12,17 +12,30 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   SignUpPage({super.key, this.onTap});
 
   final void Function()? onTap;
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   final TextEditingController _emailEditingController = TextEditingController();
 
   final TextEditingController _passwordEditingController =
       TextEditingController();
+
+  @override
+  void dispose() {
+    _emailEditingController.dispose();
+    _passwordEditingController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +173,7 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           TextSpan(
-            recognizer: TapGestureRecognizer()..onTap = onTap,
+            recognizer: TapGestureRecognizer()..onTap = widget.onTap,
             text: " Sign in",
             style: TextStyle(
               fontSize: 14,
