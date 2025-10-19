@@ -1,4 +1,4 @@
-import 'package:currency_rate_calculator/data/model/user_auth_model.dart';
+import 'package:currency_rate_calculator/domain/entity/user_auth_model.dart';
 import 'package:currency_rate_calculator/domain/usecase/auth/sign_up_usecase.dart';
 import 'package:currency_rate_calculator/get_service_locator.dart';
 import 'package:flutter/material.dart';

@@ -3,7 +3,7 @@
 import 'package:currency_rate_calculator/common/helper/validator.dart';
 import 'package:currency_rate_calculator/core/configs/app_colors.dart';
 import 'package:currency_rate_calculator/core/services/navigation_services.dart';
-import 'package:currency_rate_calculator/data/model/user_auth_model.dart';
+import 'package:currency_rate_calculator/domain/entity/user_auth_model.dart';
 import 'package:currency_rate_calculator/presentation/features/auth/bloc/cubit/user_sign_in_cubit.dart';
 import 'package:currency_rate_calculator/presentation/features/home/pages/home_page.dart';
 import 'package:currency_rate_calculator/presentation/widget/app_text_field.dart';
