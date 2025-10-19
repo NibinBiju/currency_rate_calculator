@@ -31,6 +31,36 @@ It focuses on a delightful user experience with smooth animations, clean visuals
 
 ---
 
+## Folder Structure
+
+lib/
+┣ core/
+┃ ┣ configs/
+┃ ┃ ┗ env.dart
+┃ ┗ services/
+┃ ┗ dio_service.dart
+┣ data/
+┃ ┣ model/
+┃ ┣ repository/
+┃ ┗ source/
+┣ domain/
+┃ ┣ repository/
+┃ ┗ usecases/
+┣ presentation/
+┃ ┣ bloc/
+┃ ┣ pages/
+┃ ┃ ┣ splash_page.dart
+┃ ┃ ┣ login_page.dart
+┃ ┃ ┣ register_page.dart
+┃ ┃ ┣ home_page.dart
+┃ ┃ ┗ trend_page.dart
+┃ ┗ widgets/
+┃ ┣ currency_picker.dart
+┃ ┗ result_card.dart
+┗ main.dart
+
+---
+
 ## 5-Day Trend (Mock Data)
 
 - Line chart representation of the last 5 days using static mock data  
