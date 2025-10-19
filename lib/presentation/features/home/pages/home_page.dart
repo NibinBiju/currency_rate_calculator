@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:currency_rate_calculator/core/services/sharedpreference_service.dart';
 import 'package:currency_rate_calculator/domain/entity/currency_convert_entity.dart';
 import 'package:currency_rate_calculator/presentation/features/home/bloc/bloc/currency_convert_bloc.dart';
 import 'package:currency_rate_calculator/presentation/widget/animated_chart.dart';
@@ -20,8 +19,11 @@ class _HomePageState extends State<HomePage> {
   double fromAmount = 0;
   double toAmount = 0;
 
+  List<String> recentData = [];
+
   List<String> currencies = ['AUD', 'EUR', 'USD', 'GBP'];
   bool isSwapped = false;
+  final prefsService = SharedPreferenceService();
 
   void swapCurrencies() {
     setState(() {
@@ -31,6 +33,20 @@ class _HomePageState extends State<HomePage> {
       fromCurrency = toCurrency;
       toCurrency = temp;
     });
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getCahcedData();
+    });
+
+    super.initState();
+  }
+
+  void _getCahcedData() async {
+    recentData = await prefsService.getStringList();
+    setState(() {});
   }
 
   @override
@@ -58,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               // converter Card
               Center(
                 child: SizedBox(
-                  height: 2 * cardHeight + 80,
+                  height: 2 * cardHeight + 40,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -83,6 +99,10 @@ class _HomePageState extends State<HomePage> {
 
                               setState(() {
                                 toAmount = fromAmount * rate;
+                                recentData.add(
+                                  "$fromAmount $fromCurrency to ${toAmount.toStringAsFixed(2)} $toCurrency",
+                                );
+                                prefsService.saveStringList(recentData);
                               });
                             }
                           }
@@ -202,8 +222,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              const SizedBox(height: 32),
-
               // chart Section
               _headTextWidget(width, text: 'Five day streak', colors: colors),
               AnimatedLineChart(),
@@ -213,15 +231,25 @@ class _HomePageState extends State<HomePage> {
                 text: 'Recent conversions',
                 colors: colors,
               ),
-
+              if (recentData.isEmpty)
+                Center(
+                  child: Text(
+                    'No data found',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: colors.onSurface,
+                    ),
+                  ),
+                ),
               //cached data
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: recentData.length,
                 itemBuilder: (context, index) => ListTile(
                   title: Text(
-                    '${index + 1}, 1 USD to 87 INR',
+                    "${index + 1}, ${recentData[index]}",
                     style: TextStyle(
                       color: colors.onSurface,
                       fontWeight: FontWeight.w700,
