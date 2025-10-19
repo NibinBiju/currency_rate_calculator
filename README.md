@@ -5,7 +5,7 @@ The app includes Firebase authentication, offline caching, trend visualization, 
 
 ## Setup Steps
 Flutter & Dart Versions
-Flutter version: 3.35.1 (stable)
+Flutter version: 3.35.1
 
 Dart version: 3.9.4
 
