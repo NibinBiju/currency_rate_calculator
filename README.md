@@ -173,7 +173,7 @@ lib/
 - Complete README, APK, and demo video  
 
 --
-[![Watch the video](https://drive.google.com/file/d/1V5b9C_UPndVIeZaxGWJ7abU7xkpEBw7z/view?usp=drivesdk)
+[![Watch the video](https://drive.google.com/file/d/1V5b9C_UPndVIeZaxGWJ7abU7xkpEBw7z/view?)
 
 ## Developed By
 
