@@ -107,8 +107,7 @@ lib/
 
 - Clean and minimal Material 3 design  
 - Light and dark mode support  
-- Micro animations and transitions for a polished experience  
-- Lottie animation for splash and success interactions  
+- Micro animations and transitions for a polished experience
 - Responsive layout optimized for all devices  
 
 ---
