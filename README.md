@@ -23,6 +23,11 @@ Make sure to have Flutter installed with compatible Dart SDK. You can check vers
 - Enable Email/Password authentication in Firebase Authentication settings.
 - Update the Firebase options in your Flutter app accordingly (usually in main.dart or a config file).
 
+## Login details
+
+email: nibinbiju222@gmail.com 
+password: Nibin@123
+
 ---
 
 ## Overview
