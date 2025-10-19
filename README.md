@@ -3,6 +3,26 @@
 A modern, animated Flutter application that converts currencies using a REST API.  
 The app includes Firebase authentication, offline caching, trend visualization, and clean BLoC architecture for scalability and maintainability.
 
+## Setup Steps
+Flutter & Dart Versions
+Flutter version: 3.35.1 (stable)
+
+Dart version: 3.9.4
+
+Make sure to have Flutter installed with compatible Dart SDK. You can check versions by running:
+
+- bash
+- flutter --version
+
+## Firebase Configuration
+- Create a Firebase project in the Firebase Console.
+- Add an Android/iOS app and download the google-services.json / GoogleService-Info.plist respectively.
+- Place the config files in the appropriate platform folders:
+- Android: android/app/
+- iOS: ios/Runner/
+- Enable Email/Password authentication in Firebase Authentication settings.
+- Update the Firebase options in your Flutter app accordingly (usually in main.dart or a config file).
+
 ---
 
 ## Overview
