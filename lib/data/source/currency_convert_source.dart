@@ -16,9 +16,6 @@ class CurrencyConvertSourceImpl extends CurrencyConvertSource {
   }) async {
     final accessKey = Env.accessKey;
     try {
-      print(
-        'Request URL: ${ApiService().dio.options.baseUrl}/convert?from=${currencyConvertEntity.from}&to=${currencyConvertEntity.to}&amount=${currencyConvertEntity.amount}&access_key=$accessKey',
-      );
       final response = await ApiService().getRequest(
         endpoint: '/convert',
         queryParameters: {
@@ -29,9 +26,9 @@ class CurrencyConvertSourceImpl extends CurrencyConvertSource {
         },
       );
 
-      print('Response: ${response.data}');
-
-      if (response.statusCode == 200 && response.data is Map<String, dynamic>) {
+      if (response.statusCode == 200 &&
+          response.data is Map<String, dynamic> &&
+          response.data['result']['rate'] != null) {
         return Right(response.data as Map<String, dynamic>);
       } else {
         return Left('Error: Unexpected response.');

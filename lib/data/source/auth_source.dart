@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class AuthSource {
   Future<Either> userSignIn({required String email, required String password});
   Future<Either> userSignUp({required String email, required String password});
+  Future<void> logout();
 }
 
 class AuthSourceImpl extends AuthSource {
@@ -75,5 +76,10 @@ class AuthSourceImpl extends AuthSource {
           return Left('An unknown error occurred: ${e.message}');
       }
     }
+  }
+
+  @override
+  Future<void> logout() async {
+    await firebaseAuth.signOut();
   }
 }

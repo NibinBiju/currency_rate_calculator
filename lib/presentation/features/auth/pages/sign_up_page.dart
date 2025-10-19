@@ -205,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
             fontSize: 14,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.25,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: Theme.of(context).colorScheme.surface,
           ),
           textAlign: TextAlign.left,
         ),

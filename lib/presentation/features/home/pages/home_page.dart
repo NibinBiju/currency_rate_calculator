@@ -1,3 +1,4 @@
+import 'package:currency_rate_calculator/core/services/dialog_service.dart';
 import 'package:currency_rate_calculator/core/services/sharedpreference_service.dart';
 import 'package:currency_rate_calculator/domain/entity/currency_convert_entity.dart';
 import 'package:currency_rate_calculator/presentation/features/home/bloc/bloc/currency_convert_bloc.dart';
@@ -64,6 +65,14 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: colors.surface,
         foregroundColor: colors.onSurface,
+        actions: [
+          IconButton(
+            onPressed: () {
+              DialogService.showLogoutDialog(context);
+            },
+            icon: Icon(Icons.logout_rounded),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -96,14 +105,15 @@ class _HomePageState extends State<HomePage> {
                               } else if (rateValue is String) {
                                 rate = double.tryParse(rateValue) ?? 0.0;
                               }
-
-                              setState(() {
-                                toAmount = fromAmount * rate;
-                                recentData.add(
-                                  "$fromAmount $fromCurrency to ${toAmount.toStringAsFixed(2)} $toCurrency",
-                                );
-                                prefsService.saveStringList(recentData);
-                              });
+                              if (rate != 0) {
+                                setState(() {
+                                  toAmount = fromAmount * rate;
+                                  recentData.add(
+                                    "$fromAmount $fromCurrency to ${toAmount.toStringAsFixed(2)} $toCurrency",
+                                  );
+                                  prefsService.saveStringList(recentData);
+                                });
+                              }
                             }
                           }
                           if (state is CurrencyConvertFailed) {
@@ -126,6 +136,16 @@ class _HomePageState extends State<HomePage> {
                               currencyCode: "\$",
                               onCurrencyChanged: (value) {
                                 setState(() => fromCurrency = value);
+                                context.read<CurrencyConvertBloc>().add(
+                                  OnCurrencyConvertEvent(
+                                    currencyConvertEntity:
+                                        CurrencyConvertEntity(
+                                          from: fromCurrency,
+                                          to: toCurrency,
+                                          amount: value.toString(),
+                                        ),
+                                  ),
+                                );
                               },
                               amount: fromAmount,
                               onAmountChanged: (value) {
@@ -163,6 +183,15 @@ class _HomePageState extends State<HomePage> {
                           currencyCode: "€",
                           onCurrencyChanged: (value) {
                             setState(() => toCurrency = value);
+                            context.read<CurrencyConvertBloc>().add(
+                              OnCurrencyConvertEvent(
+                                currencyConvertEntity: CurrencyConvertEntity(
+                                  from: fromCurrency,
+                                  to: toCurrency,
+                                  amount: value.toString(),
+                                ),
+                              ),
+                            );
                           },
                           onAmountChanged: (value) {
                             // setState(() => fromCurrency = value);
